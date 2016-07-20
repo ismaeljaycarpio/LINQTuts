@@ -134,6 +134,7 @@ namespace LINQTuts
                 {
                     Name = "Jon",
                     City = "Angeles",
+                    Country = Countries.Germany,
                     Orders = new Order[] 
                     {
                         new Order {OrderID = 1, EuroAmount = 100, Description = "Order 1"},
@@ -145,6 +146,7 @@ namespace LINQTuts
                 {
                     Name = "Marco",
                     City = "Baguio",
+                    Country = Countries.PHL,
                     Orders = new Order[]
                     {
                         new Order { OrderID = 4, EuroAmount = 400, Description = "Order 4"},
@@ -218,7 +220,7 @@ namespace LINQTuts
                 Console.WriteLine(item);
             }
 
-            //let clause - store the result of subexpression in a variable
+            // let clause - store the result of subexpression in a variable
             // that can be used somewhere else in the query
             var categoriesByProductNumber =
                 from c in categories
@@ -272,12 +274,17 @@ namespace LINQTuts
     {
         public String Name { get; set; }
         public String City { get; set; }
+        public Countries Country { get; set; }
         public Order[] Orders { get; set; }
     }
 
     class Order
     {
         public Int32 OrderID { get; set; }
+        public Int32 Quantity { get; set; }
+        public Boolean Shipped { get; set; }
+        public String Month { get; set; }
+        public int ProductID { get; set; }
         public Decimal EuroAmount { get; set; }
         public String Description { get; set; }
     }
@@ -292,6 +299,14 @@ namespace LINQTuts
     {
         public String ProductID { get; set; }
         public Int32 CategoryID { get; set; }
+        public Decimal Price { get; set; }
         public String Description { get; set; }
+    }
+
+    enum Countries
+    {
+        PHL,
+        USA,
+        Germany
     }
 }
